@@ -5,13 +5,14 @@ const parentDir = path.join(__dirname, '../');
 const multi = require('multi-loader');
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const PrettierWebPackPlugin = require("prettier-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const cssExtractPlugin = new MiniCssExtractPlugin()
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
   filename: "./index.html"
 });
-const PrettierWebPackPlugin = require("prettier-webpack-plugin");
-
 const prettierPlugin=new PrettierWebPackPlugin({
     printWidth: 80,               // Specify the length of line that the printer will wrap on.
     tabWidth: 2,                  // Specify the number of spaces per indentation-level.
@@ -34,11 +35,21 @@ module.exports = {
                 }]
             },
             {
-				test: /\.scss$/,
-                use: [{
-                    loader: multi("style-loader", "css-loader", "scss-loader")
-                }]
-			}
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: { 
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
+            }
 		]
     },
     output: {
@@ -56,6 +67,7 @@ module.exports = {
     },
     plugins: [
         htmlPlugin,
-        prettierPlugin
+        prettierPlugin,
+        cssExtractPlugin
     ]
 }
