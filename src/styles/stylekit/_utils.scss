@@ -4,7 +4,7 @@
 }
 
 .clearfix::after {
-  content: ' ';
+  content: " ";
   display: block;
   clear: both;
 }
@@ -15,16 +15,28 @@
   align-items: center;
 }
 
-.d-ib { display: inline-block; }
-.d-b { display: block; }
-.d-tc { display: table-cell; }
+.d-ib {
+  display: inline-block;
+}
+.d-b {
+  display: block;
+}
+.d-tc {
+  display: table-cell;
+}
 
-.p-relative { position: relative; }
-.p-absolute { position: absolute; }
-.p-fixed { position: fixed; }
-.p-sticky-t { 
-  position: sticky; 
-  position: -webkit-sticky; 
+.p-relative {
+  position: relative;
+}
+.p-absolute {
+  position: absolute;
+}
+.p-fixed {
+  position: fixed;
+}
+.p-sticky-t {
+  position: sticky;
+  position: -webkit-sticky;
   top: 0;
   z-index: 1;
 }
@@ -34,13 +46,13 @@
 .t-0 {
   top: 0;
 }
-.p-sticky-b { 
-  position: sticky; 
-  position: -webkit-sticky; 
+.p-sticky-b {
+  position: sticky;
+  position: -webkit-sticky;
   bottom: 0;
 }
 .bd {
-  border : dashed 1px #eaeaea;
+  border: dashed 1px #eaeaea;
 }
 .ba {
   border: solid 1px #eaeaea;
@@ -135,9 +147,9 @@
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 }
-.hide-scrollbar::-webkit-scrollbar { 
-  display: none; 
-} 
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 .overflow-x-noscroll {
   overflow-x: hidden;
