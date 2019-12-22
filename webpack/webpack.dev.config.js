@@ -51,14 +51,17 @@ module.exports = {
             }
         ]
     },
-    output: {
-        path: __dirname + './../dist',
-        filename: 'bundle.js'
-    },
+    // output: {
+    //     path: __dirname + './../dist',
+    //     filename: 'bundle.js'
+    // },
     devServer: {
-        contentBase: __dirname + './../dist',
+        contentBase: __dirname + './../src',
         historyApiFallback: true,
         open: true,
+        stats: 'minimal',
+        inline: true,
+        compress: false,
         allowedHosts: []
     },
     resolve: {
