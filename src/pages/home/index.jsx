@@ -1,18 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Bills from "../../components/bills";
-import { addFriend, addBill } from "./actions";
 
 const Home = props => {
-  const { addBill, addFriend } = props;
   return (
     <div>
-      <Bills addBill={addBill} addFriend={addFriend} />
+      <button>
+        <Link to="/bills">Add Bill</Link>
+      </button>
+      <button>
+        <Link to="/friends">Add friends</Link>
+      </button>
     </div>
   );
 };
 const mapStateToProps = ({}) => {};
-export default connect(mapStateToProps, {
-  addBill,
-  addFriend
-})(Home);
+export default connect(mapStateToProps, {})(Home);

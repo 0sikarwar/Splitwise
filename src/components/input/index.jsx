@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 
-const Input = props => {
-  const {
-    label,
-    className,
-    onChange,
-    value,
-    labelClassName,
-    onSubmit,
-    button,
-    buttonClassName,
-    type,
-    placeholder,
-    name
-  } = props;
+const Input = ({
+  onSubmit,
+  button,
+  buttonClassName,
+  label,
+  labelClassName,
+  onChange,
+  ...otherProps
+}) => {
   const _onChange = e => {
     const val = e.currentTarget.value;
+    const name = e.currentTarget.name;
     onChange(val, name);
   };
   return (
@@ -23,14 +19,7 @@ const Input = props => {
       <If condition={label}>
         <label className={labelClassName}>{label}</label>
       </If>
-      <input
-        className={className}
-        type={type}
-        name={name}
-        value={value}
-        onChange={_onChange}
-        placeholder={placeholder}
-      />
+      <input {...otherProps} onChange={_onChange} />
       <If condition={onSubmit}>
         <button onClick={onSubmit} className={buttonClassName}>
           {button}

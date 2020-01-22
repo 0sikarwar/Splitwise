@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
-import testReducer from "./../containers/reducer.js";
+import friendsReducer from "../pages/friends/reducer";
+import billsReducer from "../pages/bills/reducer";
 const rootReducer = combineReducers({
-  test: testReducer
+  friends: friendsReducer,
+  bills: billsReducer
 });
 
 export default rootReducer;

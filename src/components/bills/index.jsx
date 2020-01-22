@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import CreateBill from "./createBill";
 
-const Bills = () => {
+const Bills = props => {
   return (
     <div>
-      <CreateBill />
+      <CreateBill addBill={props.addBill} />
     </div>
   );
 };

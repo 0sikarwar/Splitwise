@@ -8,7 +8,7 @@ const CreateBill = props => {
   };
   const [billName, setName] = useState("");
   const [billAmount, setAmount] = useState();
-  const [personCount, setPersonCount] = useState();
+  const [personCount, setPersonCount] = useState(0);
   const [friendsInBill, addFriendsInBill] = useState([defaultFriendObj]);
   const handleChange = (value, name) => {
     const inputName = name.split("_")[0];
@@ -25,7 +25,10 @@ const CreateBill = props => {
         setAmount(parseInt(value));
         break;
       case "personCount":
-        if (value < 0) break;
+        if (!value || value < 0) {
+          setPersonCount(0);
+          break;
+        }
         setPersonCount(parseInt(value));
         break;
       case "friend": {
@@ -48,6 +51,13 @@ const CreateBill = props => {
   };
   const handleSubmit = () => {
     console.log(billName, billAmount);
+    const bill = {
+      billName,
+      billAmount,
+      personCount,
+      friendsInBill
+    };
+    props.addBill(bill);
   };
   const currentList = [...friendsInBill];
   const length = friendsInBill.length;
@@ -77,7 +87,7 @@ const CreateBill = props => {
       <Input
         placeholder="Person Count"
         onChange={handleChange}
-        value={personCount}
+        value={personCount || ""}
         name="personCount"
         type="number"
       />
