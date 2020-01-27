@@ -6,7 +6,13 @@ import { getFromLocalStore, addToLocalStore } from "../../utils";
 
 function* addBill(action) {
   const bills = getFromLocalStore("bills") || [];
-  bills.push(action.bill);
+  const friends = getFromLocalStore("friends") || [];
+  const { bill } = action;
+  const { friendsInBill, billAmount, personCount } = bill;
+  const amountPerHead = Math.round(billAmount / (personCount + 1));
+
+  debugger;
+  bills.push(bill);
   if (addToLocalStore("bills", bills)) {
     console.log("ADDED");
   } else {

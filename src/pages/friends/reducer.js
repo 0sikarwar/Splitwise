@@ -1,4 +1,4 @@
-import { ADD_FRIEND } from "./actions";
+import { ADD_FRIEND, GET_ALL_FRIENDS_SUCCESS } from "./actions";
 
 export default function reducer(
   state = {
@@ -11,6 +11,11 @@ export default function reducer(
       return {
         ...state,
         friendsList: [...state.friendsList, action.friend]
+      };
+    case GET_ALL_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        friendsList: action.friends
       };
     default:
       return state;
