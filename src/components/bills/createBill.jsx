@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Input from "../input";
+import { filterInArrayOfObj, isEmpty } from "../../utils/index";
+import Autocomplete from "../autocomplete";
 
 const CreateBill = props => {
   const defaultFriendObj = {
@@ -10,12 +12,21 @@ const CreateBill = props => {
   const [billAmount, setAmount] = useState();
   const [personCount, setPersonCount] = useState(0);
   const [friendsInBill, addFriendsInBill] = useState([defaultFriendObj]);
+  const [friendInputName, updateFriendInputName] = useState("");
+  const [filteredArray, updateFilteredArray] = useState([]);
   const handleChange = (value, name) => {
     const inputName = name.split("_")[0];
     let friendsInBillToAdd, indexOfFriend;
     if (inputName === "friend" || inputName === "paid") {
-      friendsInBillToAdd = [...friendsInBill];
+      debugger;
       indexOfFriend = name.split("_")[1];
+      if (inputName === "friend") {
+        updateFriendInputName(name);
+        updateFilteredArray(
+          filterInArrayOfObj(value, props.friendsList, "name")
+        );
+      }
+      friendsInBillToAdd = [...friendsInBill];
     }
     switch (inputName) {
       case "billName":
@@ -32,11 +43,7 @@ const CreateBill = props => {
         setPersonCount(parseInt(value));
         break;
       case "friend": {
-        friendsInBillToAdd[indexOfFriend] = {
-          ...friendsInBillToAdd[indexOfFriend],
-          name: value
-        };
-        addFriendsInBill(friendsInBillToAdd);
+        handleFriendChnage(value, name);
         break;
       }
       case "paid": {
@@ -49,13 +56,25 @@ const CreateBill = props => {
       }
     }
   };
+  const handleFriendChnage = (value, name, id) => {
+    debugger;
+    const friendsInBillToAdd = [...friendsInBill];
+    const indexOfFriend = name.split("_")[1];
+    friendsInBillToAdd[indexOfFriend] = {
+      ...friendsInBillToAdd[indexOfFriend],
+      name: value,
+      id
+    };
+    addFriendsInBill(friendsInBillToAdd);
+  };
   const handleSubmit = () => {
     console.log(billName, billAmount);
     const bill = {
       billName,
       billAmount,
       personCount,
-      friendsInBill
+      friendsInBill,
+      id: new Date().getTime()
     };
     props.addBill(bill);
   };
@@ -111,6 +130,13 @@ const CreateBill = props => {
           </div>
         );
       })}
+      {!isEmpty(filteredArray) && (
+        <Autocomplete
+          inputName={friendInputName}
+          list={filteredArray}
+          onSelect={handleFriendChnage}
+        />
+      )}
     </div>
   );
 };

@@ -81,3 +81,7 @@ export const path = (p, o) => {
   };
   return p.reduce(reducerFunction, o);
 };
+
+export const filterInArrayOfObj = (inputValue, array, key) => {
+  return array.filter((obj, index) => obj[key].indexOf(inputValue) !== -1);
+};

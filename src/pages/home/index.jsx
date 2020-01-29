@@ -6,13 +6,6 @@ import { getAllFriends } from "../../pages/friends/actions";
 import { path, isEmpty } from "../../utils/index";
 const Home = props => {
   const { friends } = props;
-  useEffect(() => {
-    debugger;
-
-    if (isEmpty(friends)) {
-      props.getAllFriends();
-    }
-  });
   debugger;
   return (
     <div>

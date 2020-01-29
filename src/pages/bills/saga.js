@@ -10,8 +10,19 @@ function* addBill(action) {
   const { bill } = action;
   const { friendsInBill, billAmount, personCount } = bill;
   const amountPerHead = Math.round(billAmount / (personCount + 1));
-
+  const updatedFriends = friends.map((friend, index) => {
+    const friendInBill = friendsInBill.find(obj => obj.id === friend.id);
+    if (friendInBill) {
+      friend.owe = amountPerHead - friendInBill.paid + (friend.owe || 0);
+    }
+    return friend;
+  });
   debugger;
+  if (addToLocalStore("friends", updatedFriends)) {
+    console.log("FRIENDS UPDATED");
+  } else {
+    console.log("FRIENDS UPDATE FAILED");
+  }
   bills.push(bill);
   if (addToLocalStore("bills", bills)) {
     console.log("ADDED");

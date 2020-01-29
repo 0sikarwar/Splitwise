@@ -7,8 +7,10 @@ const Home = props => {
       {friends.map((friend, index) => {
         return (
           <li key={index}>
-            <span>Name: </span>
-            <span>{friend.name}</span>
+            <span className="pr-5">Name: </span>
+            <span className="pr-5">{friend.name}</span>
+            <span className="pr-5 pl-5">owes:</span>
+            <span>{friend.owe || 0}</span>
           </li>
         );
       })}

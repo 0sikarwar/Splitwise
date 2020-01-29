@@ -4,7 +4,7 @@ import CreateBill from "./createBill";
 const Bills = props => {
   return (
     <div>
-      <CreateBill addBill={props.addBill} />
+      <CreateBill addBill={props.addBill} friendsList={props.friendsList} />
     </div>
   );
 };

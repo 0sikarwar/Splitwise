@@ -13,7 +13,8 @@ const CreateFreind = props => {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    props.addFriend({ name, email });
+    const id = new Date().getTime();
+    props.addFriend({ name, email, id });
     console.log(name, email);
   };
   return (
