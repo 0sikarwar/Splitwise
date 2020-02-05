@@ -25,6 +25,9 @@ const CreateBill = props => {
         updateFilteredArray(
           filterInArrayOfObj(value, props.friendsList, "name")
         );
+        if (!value) {
+          updateFilteredArray([]);
+        }
       }
       friendsInBillToAdd = [...friendsInBill];
     }
@@ -66,6 +69,10 @@ const CreateBill = props => {
       id
     };
     addFriendsInBill(friendsInBillToAdd);
+  };
+  const handleFriendSelect = (value, name, id) => {
+    handleFriendChnage(value, name, id);
+    updateFilteredArray([]);
   };
   const handleSubmit = () => {
     console.log(billName, billAmount);
@@ -127,16 +134,16 @@ const CreateBill = props => {
               value={currentList[i].paid}
               type="number"
             />
+            {!isEmpty(filteredArray) && friendInputName === `friend_${i}` && (
+              <Autocomplete
+                inputName={friendInputName}
+                list={filteredArray}
+                onSelect={handleFriendSelect}
+              />
+            )}
           </div>
         );
       })}
-      {!isEmpty(filteredArray) && (
-        <Autocomplete
-          inputName={friendInputName}
-          list={filteredArray}
-          onSelect={handleFriendChnage}
-        />
-      )}
     </div>
   );
 };

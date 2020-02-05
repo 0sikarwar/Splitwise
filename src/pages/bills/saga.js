@@ -10,14 +10,30 @@ function* addBill(action) {
   const { bill } = action;
   const { friendsInBill, billAmount, personCount } = bill;
   const amountPerHead = Math.round(billAmount / (personCount + 1));
+  debugger;
   const updatedFriends = friends.map((friend, index) => {
-    const friendInBill = friendsInBill.find(obj => obj.id === friend.id);
-    if (friendInBill) {
-      friend.owe = amountPerHead - friendInBill.paid + (friend.owe || 0);
+    const friendInBillIndex = friendsInBill.findIndex(
+      obj => obj.id === friend.id
+    );
+    if (friendInBillIndex > -1) {
+      friend.owe =
+        amountPerHead -
+        friendsInBill[friendInBillIndex].paid +
+        (friend.owe || 0);
+      friendsInBill.splice(friendInBillIndex, 1);
     }
     return friend;
   });
-  debugger;
+  if (friendsInBill.length) {
+    friendsInBill.forEach(friend => {
+      updatedFriends.push({
+        ...friend,
+        owe: amountPerHead - friend.paid,
+        id: new Date().getTime(),
+        temp: true
+      });
+    });
+  }
   if (addToLocalStore("friends", updatedFriends)) {
     console.log("FRIENDS UPDATED");
   } else {
