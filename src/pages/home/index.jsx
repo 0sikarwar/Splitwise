@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import HomeComponent from "../../components/home";
-import { getAllFriends } from "../../pages/friends/actions";
+import { getAllFriends, addFriend } from "../friends/actions";
 import { path, isEmpty } from "../../utils/index";
 const Home = props => {
-  const { friends } = props;
-  debugger;
+  const { friends, addFriend } = props;
   return (
     <div>
       <button>
@@ -15,7 +14,7 @@ const Home = props => {
       <button>
         <Link to="/friends">Add friends</Link>
       </button>
-      <HomeComponent friends={friends || []} />
+      <HomeComponent friends={friends || []} addFriend={addFriend} />
     </div>
   );
 };
@@ -25,5 +24,6 @@ const mapStateToProps = data => {
   };
 };
 export default connect(mapStateToProps, {
-  getAllFriends
+  getAllFriends,
+  addFriend
 })(Home);

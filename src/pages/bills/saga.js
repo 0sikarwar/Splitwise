@@ -10,7 +10,6 @@ function* addBill(action) {
   const { bill } = action;
   const { friendsInBill, billAmount, personCount } = bill;
   const amountPerHead = Math.round(billAmount / (personCount + 1));
-  debugger;
   const updatedFriends = friends.map((friend, index) => {
     const friendInBillIndex = friendsInBill.findIndex(
       obj => obj.id === friend.id
@@ -27,7 +26,7 @@ function* addBill(action) {
   if (friendsInBill.length) {
     friendsInBill.forEach(friend => {
       updatedFriends.push({
-        ...friend,
+        name: friend.name,
         owe: amountPerHead - friend.paid,
         id: new Date().getTime(),
         temp: true

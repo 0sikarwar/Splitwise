@@ -5,10 +5,14 @@ import CreateFriend from "../friends/createFriend";
 const Home = props => {
   const [showAddFriendModal, toggleShowAddFriendModal] = useState(false);
   const [friendToAdd, setFriendToAdd] = useState({});
-  const { friends } = props;
-  const addFriend = friend => {
+  const { friends, addFriend } = props;
+  const handleTempFriendClick = friend => {
     toggleShowAddFriendModal(!showAddFriendModal);
     setFriendToAdd(friend);
+  };
+  const handleAddFriend = friend => {
+    toggleShowAddFriendModal(!showAddFriendModal);
+    addFriend(friend);
   };
   return (
     <>
@@ -23,7 +27,7 @@ const Home = props => {
               {friend.temp && (
                 <button
                   onClick={() => {
-                    addFriend(friend);
+                    handleTempFriendClick(friend);
                   }}
                 >
                   Add
@@ -35,8 +39,11 @@ const Home = props => {
       </div>
       {showAddFriendModal && (
         <Overlay>
-          <Modal>
-            <CreateFriend />
+          <Modal type="renderProp">
+            <CreateFriend
+              friendToAdd={friendToAdd}
+              addFriend={handleAddFriend}
+            />
           </Modal>
         </Overlay>
       )}

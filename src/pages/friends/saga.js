@@ -1,22 +1,41 @@
 import { takeEvery, all, put } from "redux-saga/effects";
 
 import sagasManager from "../../utils/sagasManager";
-import { ADD_FRIEND, GET_ALL_FRIENDS, getAllFriendsSuccess } from "./actions";
+import {
+  ADD_FRIEND,
+  GET_ALL_FRIENDS,
+  getAllFriendsSuccess,
+  addFriendSuccess,
+  addFriendFailure
+} from "./actions";
 import { getFromLocalStore, addToLocalStore, isEmpty } from "../../utils";
 
 function* addFriend(action) {
   const friends = getFromLocalStore("friends") || [];
-  friends.push(action.friend);
-  if (addToLocalStore("friends", friends)) {
-    console.log("ADDED");
+  const { friend: friendToAdd } = action;
+  const index = friends.findIndex(obj => obj.id === friendToAdd.id);
+  const friendMatched = friends.find(
+    obj =>
+      (!obj.temp && obj.name === friendToAdd.name) ||
+      obj.email === friendToAdd.email
+  );
+  if (friendMatched) {
+    const errMsg = "Name or Email Existing";
+    yield put(addFriendFailure(errMsg));
   } else {
-    console.log("FAILED");
+    index > -1 ? (friends[index] = friendToAdd) : friends.push(friendToAdd);
+    if (addToLocalStore("friends", friends)) {
+      yield put(addFriendSuccess(friends));
+      console.log("ADDED");
+    } else {
+      yield put(addFriendFailure(errMsg));
+      console.log("FAILED");
+    }
   }
 }
 
 function* getAllFriends() {
   const friends = getFromLocalStore("friends") || [];
-  debugger;
   if (!isEmpty(friends)) {
     yield put(getAllFriendsSuccess(friends));
   } else {

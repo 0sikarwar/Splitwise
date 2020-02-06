@@ -12,7 +12,6 @@ const App = props => {
   return null;
 };
 const mapStateToProps = data => {
-  debugger;
   return {
     friends: path(["friends", "friendsList"], data)
   };

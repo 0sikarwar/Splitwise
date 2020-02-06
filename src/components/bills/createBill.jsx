@@ -18,7 +18,6 @@ const CreateBill = props => {
     const inputName = name.split("_")[0];
     let friendsInBillToAdd, indexOfFriend;
     if (inputName === "friend" || inputName === "paid") {
-      debugger;
       indexOfFriend = name.split("_")[1];
       if (inputName === "friend") {
         updateFriendInputName(name);
@@ -60,7 +59,6 @@ const CreateBill = props => {
     }
   };
   const handleFriendChnage = (value, name, id) => {
-    debugger;
     const friendsInBillToAdd = [...friendsInBill];
     const indexOfFriend = name.split("_")[1];
     friendsInBillToAdd[indexOfFriend] = {
