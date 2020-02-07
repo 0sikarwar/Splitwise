@@ -18,9 +18,11 @@
 .d-ib {
   display: inline-block;
 }
+
 .d-b {
   display: block;
 }
+
 .d-tc {
   display: table-cell;
 }
@@ -28,44 +30,56 @@
 .p-relative {
   position: relative;
 }
+
 .p-absolute {
   position: absolute;
 }
+
 .p-fixed {
   position: fixed;
 }
+
 .p-sticky-t {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   z-index: 1;
 }
+
 .b-0 {
   bottom: 0;
 }
+
 .t-0 {
   top: 0;
 }
+
 .p-sticky-b {
   position: sticky;
   position: -webkit-sticky;
   bottom: 0;
 }
+
 .bd {
   border: dashed 1px #eaeaea;
 }
+
 .ba {
   border: solid 1px #eaeaea;
 }
+
 .bb {
   border-bottom: solid 1px #eaeaea;
 }
+
 .bt {
   border-top: solid 1px #eaeaea;
 }
+
 .bl {
   border-left: solid 1px #eaeaea;
 }
+
 .br {
   border-right: solid 1px #eaeaea;
 }
@@ -77,12 +91,15 @@
 .bb-0 {
   border-bottom: 0 !important;
 }
+
 .bt-0 {
   border-top: 0 !important;
 }
+
 .bl-0 {
   border-left: 0 !important;
 }
+
 .br-0 {
   border-right: 0 !important;
 }
@@ -90,51 +107,67 @@
 .br0 {
   border-radius: 0;
 }
+
 .br1 {
   border-radius: 0.125rem;
 }
+
 .br2 {
   border-radius: 0.25rem;
 }
+
 .br3 {
   border-radius: 0.5rem;
 }
+
 .br4 {
   border-radius: 1rem;
 }
+
 .br100 {
   border-radius: 100%;
 }
+
 .br-pill {
   border-radius: 9999px;
 }
+
 .btr0 {
   border-top-right-radius: 0px;
 }
+
 .btl0 {
   border-top-left-radius: 0px;
 }
+
 .bbr0 {
   border-bottom-right-radius: 0px;
 }
+
 .bbl0 {
   border-bottom-left-radius: 0px;
 }
+
 .o-0 {
   opacity: 0;
 }
+
 .o-20 {
   opacity: 0.2;
 }
+
 .o-40 {
   opacity: 0.4;
 }
+
 .o-50 {
   opacity: 0.5;
 }
+
 .o-80 {
   opacity: 0.8;
 }
+
 .o-100 {
   opacity: 1;
 }
@@ -143,10 +176,12 @@
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 }
+
 .hide-scrollbar {
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
 }
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -154,16 +189,20 @@
 .overflow-x-noscroll {
   overflow-x: hidden;
 }
+
 .overflow-y-scroll {
   overflow-y: scroll;
   // -webkit-overflow-scrolling: touch;
 }
+
 .overflow-unset {
   overflow: unset;
 }
+
 .overflow-y-noscroll {
   overflow-y: hidden;
 }
+
 .ws-nowrap {
   white-space: nowrap;
 }
@@ -171,6 +210,7 @@
 .vertical-top {
   vertical-align: top;
 }
+
 .vertical-bottom {
   vertical-align: bottom;
 }
@@ -185,6 +225,16 @@
   border-color: #ddd;
   margin-left: 10px;
 }
+
 .c-pointer-none {
   pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: none;
+  }
 }

@@ -4,16 +4,12 @@ import { connect } from "react-redux";
 import HomeComponent from "../../components/home";
 import { getAllFriends, addFriend } from "../friends/actions";
 import { path, isEmpty } from "../../utils/index";
+import { Header } from "../../components/header";
 const Home = props => {
   const { friends, addFriend } = props;
   return (
     <div>
-      <button>
-        <Link to="/bills">Add Bill</Link>
-      </button>
-      <button>
-        <Link to="/friends">Add friends</Link>
-      </button>
+      <Header activeLink={"home"} />
       <HomeComponent friends={friends || []} addFriend={addFriend} />
     </div>
   );

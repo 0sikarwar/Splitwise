@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import BillsComponent from "../../components/bills";
 import { addBill } from "./actions";
 import { path } from "../../utils/index";
+import { Header } from "../../components/header";
 
 const Bills = props => {
   const { addBill, addFriend } = props;
   return (
     <div>
+      <Header activeLink={"bills"} />
       <BillsComponent addBill={addBill} friendsList={props.friends} />
     </div>
   );

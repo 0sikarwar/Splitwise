@@ -113,6 +113,7 @@
 .lh-copy {
   line-height: 1.5;
 }
+
 .lh-error {
   line-height: 0.5;
 }
@@ -231,4 +232,8 @@
 .p-truncate-1 {
   @include multi-truncate(1);
   word-break: break-all;
+}
+
+.t-hX2 {
+  transform: scale(1, 2);
 }

@@ -4,10 +4,7 @@
 @import "stylekit/dimensions";
 @import "stylekit/spacing";
 @import "stylekit/typography";
+@import "stylekit/colors";
 @import "stylekit/utils";
 @import "Modal";
 @import "Overlay";
-
-body {
-  color: rebeccapurple;
-}
