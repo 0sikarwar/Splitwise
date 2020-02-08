@@ -7,6 +7,7 @@ const Input = ({
   label,
   labelClassName,
   onChange,
+  className,
   ...otherProps
 }) => {
   const _onChange = e => {
@@ -15,17 +16,17 @@ const Input = ({
     onChange(val, name);
   };
   return (
-    <>
+    <div className="inputBox">
       <If condition={label}>
         <label className={labelClassName}>{label}</label>
       </If>
-      <input {...otherProps} onChange={_onChange} />
+      <input className={className} {...otherProps} onChange={_onChange} />
       <If condition={onSubmit}>
         <button onClick={onSubmit} className={buttonClassName}>
           {button}
         </button>
       </If>
-    </>
+    </div>
   );
 };
 

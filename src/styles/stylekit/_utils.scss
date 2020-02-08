@@ -54,6 +54,10 @@
   top: 0;
 }
 
+.b-20 {
+  bottom: 20px;
+}
+
 .p-sticky-b {
   position: sticky;
   position: -webkit-sticky;
@@ -237,4 +241,32 @@ a {
     pointer-events: none;
     cursor: none;
   }
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+.autocompleteDiv {
+  position: absolute;
+  z-index: 1;
+  background-color: #ffffff;
+  color: #000000;
+  border: 0.5px solid #ededed;
+  width: 230px;
+  overflow: hidden;
+  left: 80px;
+  top: 35px;
+  box-shadow: 2px 2px #ededed;
+  border-radius: 0px 0px 5px 5px;
+
+  li {
+    &:hover {
+      background-color: #ededed;
+    }
+  }
+}
+
+.r-70 {
+  right: 70px;
 }

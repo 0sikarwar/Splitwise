@@ -6,10 +6,10 @@ import { getAllFriends, addFriend } from "../friends/actions";
 import { path, isEmpty } from "../../utils/index";
 import { Header } from "../../components/header";
 const Home = props => {
-  const { friends, addFriend } = props;
+  const { friends, addFriend, history } = props;
   return (
     <div>
-      <Header activeLink={"home"} />
+      <Header history={history} />
       <HomeComponent friends={friends || []} addFriend={addFriend} />
     </div>
   );

@@ -24,6 +24,7 @@ const CreateFreind = props => {
       owe: (friendToAdd || {}).owe || 0,
       temp: false
     });
+    props.goToHome();
     console.log(name, email);
   };
   return (
@@ -42,7 +43,24 @@ const CreateFreind = props => {
         onChange={handleChange}
         name={"email"}
       />
-      <button onClick={handleSubmit}>Add Friend</button>
+      <div>
+        <button
+          className={`bg-primary hover-primary ${
+            props.handleCancel ? "" : "ml-80"
+          }`}
+          onClick={handleSubmit}
+        >
+          Add Friend
+        </button>
+        {props.handleCancel && (
+          <button
+            className="bg-primary hover-primary ml-20"
+            onClick={props.handleCancel}
+          >
+            cancel
+          </button>
+        )}
+      </div>
     </div>
   );
 };

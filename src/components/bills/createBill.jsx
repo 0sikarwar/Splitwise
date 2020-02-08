@@ -82,6 +82,7 @@ const CreateBill = props => {
       id: new Date().getTime()
     };
     props.addBill(bill);
+    props.goToHome();
   };
   const currentList = [...friendsInBill];
   const length = friendsInBill.length;
@@ -93,55 +94,75 @@ const CreateBill = props => {
     addFriendsInBill(currentList);
   }
   const range = [...Array(personCount).keys()];
+  const handleFriendBlur = e => {
+    updateFilteredArray([]);
+    document.removeEventListener("click", handleFriendBlur);
+  };
+  const handleFriendFocus = e => {
+    e.target.focus();
+    document.addEventListener("click", handleFriendBlur);
+  };
   return (
     <div>
       <Input
-        label="billName"
+        label="Bill name"
         onChange={handleChange}
         value={billName}
         name="billName"
       />
-      <Input
-        placeholder="amount"
-        onChange={handleChange}
-        value={billAmount}
-        name="billAmount"
-        type="number"
-      />
-      <Input
-        placeholder="Person Count"
-        onChange={handleChange}
-        value={personCount || ""}
-        name="personCount"
-        type="number"
-      />
-      <button onClick={handleSubmit}>Create Bill</button>
+      <div className="flex">
+        <Input
+          placeholder="Amount"
+          onChange={handleChange}
+          value={billAmount}
+          name="billAmount"
+          type="number"
+          className="maxw-115"
+          label="Bill details"
+        />
+        <Input
+          placeholder="Person Count"
+          onChange={handleChange}
+          value={personCount || ""}
+          name="personCount"
+          type="number"
+          className="maxw-85"
+        />
+      </div>
       {range.map((val, i) => {
         return (
-          <div key={i}>
+          <div className="p-relative mt--15" key={i}>
             <Input
               label={`Friend ${i + 1}`}
               name={`friend_${i}`}
               onChange={handleChange}
               value={currentList[i].name}
+              onFocus={handleFriendFocus}
             />
+            {!isEmpty(filteredArray) && friendInputName === `friend_${i}` && (
+              <div className="autocompleteDiv">
+                <Autocomplete
+                  inputName={friendInputName}
+                  list={filteredArray}
+                  onSelect={handleFriendSelect}
+                />
+              </div>
+            )}
             <Input
               placeholder="Amount Paid"
               name={`paid_${i}`}
               onChange={handleChange}
               value={currentList[i].paid}
+              className="maxw-115 p-absolute  b-20"
               type="number"
+              label=" "
             />
-            {!isEmpty(filteredArray) && friendInputName === `friend_${i}` && (
-              <Autocomplete
-                inputName={friendInputName}
-                list={filteredArray}
-                onSelect={handleFriendSelect}
-              />
-            )}
           </div>
         );
       })}
+      <button className="bg-primary hover-primary ml-80" onClick={handleSubmit}>
+        Create Bill
+      </button>
     </div>
   );
 };

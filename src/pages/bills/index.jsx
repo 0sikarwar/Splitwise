@@ -6,11 +6,18 @@ import { path } from "../../utils/index";
 import { Header } from "../../components/header";
 
 const Bills = props => {
-  const { addBill, addFriend } = props;
+  const { addBill, addFriend, history } = props;
+  const goToHome = () => {
+    history.push("/");
+  };
   return (
     <div>
-      <Header activeLink={"bills"} />
-      <BillsComponent addBill={addBill} friendsList={props.friends} />
+      <Header history={history} />
+      <BillsComponent
+        addBill={addBill}
+        friendsList={props.friends}
+        goToHome={goToHome}
+      />
     </div>
   );
 };

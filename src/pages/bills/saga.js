@@ -1,8 +1,9 @@
-import { takeEvery, all } from "redux-saga/effects";
+import { takeEvery, all, put } from "redux-saga/effects";
 
 import sagasManager from "../../utils/sagasManager";
 import { ADD_BILL } from "./actions";
 import { getFromLocalStore, addToLocalStore } from "../../utils";
+import { addFriendSuccess } from "../friends/actions";
 
 function* addBill(action) {
   const bills = getFromLocalStore("bills") || [];
@@ -34,6 +35,7 @@ function* addBill(action) {
     });
   }
   if (addToLocalStore("friends", updatedFriends)) {
+    yield put(addFriendSuccess(updatedFriends));
     console.log("FRIENDS UPDATED");
   } else {
     console.log("FRIENDS UPDATE FAILED");

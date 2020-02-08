@@ -14,28 +14,55 @@ const Home = props => {
     toggleShowAddFriendModal(!showAddFriendModal);
     addFriend(friend);
   };
+  const hideModal = () => {
+    toggleShowAddFriendModal(false);
+  };
+  let totalOwesYouAmt = 0,
+    totalYouOweAmt = 0;
   return (
     <>
       <div>
-        {friends.map((friend, index) => {
-          return (
-            <li key={index}>
-              <span className="pr-5">Name: </span>
-              <span className="pr-5">{friend.name}</span>
-              <span className="pr-5 pl-5">owes:</span>
-              <span>{friend.owe || 0}</span>
-              {friend.temp && (
-                <button
-                  onClick={() => {
-                    handleTempFriendClick(friend);
-                  }}
-                >
-                  Add
-                </button>
-              )}
-            </li>
-          );
-        })}
+        <ul className="list">
+          {friends.map((friend, index) => {
+            let divClass, oweText;
+            if (friend.owe >= 0) {
+              divClass = "t-green";
+              oweText = "Owes you";
+              totalOwesYouAmt += Math.abs(friend.owe);
+            } else {
+              divClass = "t-red";
+              oweText = "You owe";
+              totalYouOweAmt += Math.abs(friend.owe);
+            }
+            return (
+              <li key={index} className="listItem">
+                <span>{friend.name}</span>
+                <div className={`flex ${divClass}`}>
+                  <span>{oweText}</span>
+                  <span>{Math.abs(friend.owe) || 0}</span>
+                </div>
+                {friend.temp && (
+                  <button
+                    className="p-absolute r-70"
+                    onClick={() => {
+                      handleTempFriendClick(friend);
+                    }}
+                  >
+                    Add
+                  </button>
+                )}
+              </li>
+            );
+          })}
+          <li>
+            <span className="w-240">Total amount you will get </span>
+            <span className="t-green">{totalOwesYouAmt}</span>
+          </li>
+          <li>
+            <span className="w-240">Total amount you need to give </span>
+            <span className="t-red">{totalYouOweAmt}</span>
+          </li>
+        </ul>
       </div>
       {showAddFriendModal && (
         <Overlay>
@@ -43,6 +70,7 @@ const Home = props => {
             <CreateFriend
               friendToAdd={friendToAdd}
               addFriend={handleAddFriend}
+              handleCancel={hideModal}
             />
           </Modal>
         </Overlay>

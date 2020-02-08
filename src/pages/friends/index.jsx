@@ -5,11 +5,14 @@ import { addFriend } from "./actions";
 import { Header } from "../../components/header";
 
 const Friends = props => {
-  const { addFriend } = props;
+  const { addFriend, history } = props;
+  const goToHome = () => {
+    history.push("/");
+  };
   return (
     <div>
-      <Header activeLink={"friends"} />
-      <FriendsComponent addFriend={addFriend} />
+      <Header history={history} />
+      <FriendsComponent addFriend={addFriend} goToHome={goToHome} />
     </div>
   );
 };
