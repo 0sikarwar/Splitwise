@@ -1,0 +1,23 @@
+.list {
+  list-style: none;
+  padding: 20px;
+
+  li {
+    height: 32px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    width: 500px;
+  }
+
+  .listItem {
+    border-bottom: 1px solid #e6e6e6;
+
+    span {
+      min-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

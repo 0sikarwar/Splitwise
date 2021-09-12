@@ -1,0 +1,45 @@
+.bg-primary {
+  background-color: #437fc7;
+  color: #ffffff;
+}
+
+.t-primary {
+  color: #ffffff;
+}
+
+.bg-secondary {
+  background-color: #53bac1;
+  color: #e6e6e6;
+}
+
+.t-secondary {
+  color: #e6e6e6;
+}
+
+.bg-tertiary {
+  background-color: #ededed;
+  color: #e68244;
+}
+
+.t-tertiary {
+  color: #e68244;
+}
+
+.hover-primary {
+  &:hover {
+    color: #53bac1;
+  }
+}
+
+.t-green {
+  color: #1a8101;
+}
+
+.t-red {
+  color: #a50404;
+}
+
+.bg-white {
+  background-color: #ffffff;
+  color: #000000;
+}
